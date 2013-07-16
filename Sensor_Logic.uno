@@ -7,6 +7,8 @@
  */
 
 // the setup routine runs once when you press reset:
+#include <stdio.h>
+#include <stdlib.h>
 void setup() {
   // initialize serial communication at 9600 bits per second:
   Serial.begin(9600);
@@ -37,4 +39,15 @@ void loop() {
   }
       // delay in between reads for stability
 }
+FILE *fp = fopen("/dev/ttyUSB0" ,"r+");  // fp is the pointer of file // gives read and write permission to the text file.
+char ch;
+ch = getc(fp)                     // Pics the character one by one.
+while (ch!= EOF)
+{
+ch= getc(ch);
+putc(ch);                         // Print the character to the terminal
+}
+
+
+
 
