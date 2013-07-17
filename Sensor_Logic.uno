@@ -37,15 +37,18 @@ void loop() {
   else
   {
   }
-      // delay in between reads for stability
-}
-FILE *fp = fopen("/dev/ttyUSB0" ,"r+");  // fp is the pointer of file // gives read and write permission to the text file.
-char ch;
-ch = getc(fp);                     // Pics the character one by one.
-while (ch!= EOF)
-{
-ch= getc(ch);
-putc(ch);                         // Print the character to the terminal
+  int my_handler(sig_t s)
+  {
+  Serial.println("Caught signal %d\n",s);
+  exit(1); 
+  }
+  int main(int argc,char** argv)
+  {
+  signal (SIGINT,my_handler);
+  while(1);
+  return 0;
+  }
+ 
 }
 
 
