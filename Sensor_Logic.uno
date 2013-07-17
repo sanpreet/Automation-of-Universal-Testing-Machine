@@ -41,7 +41,7 @@ void loop() {
 }
 FILE *fp = fopen("/dev/ttyUSB0" ,"r+");  // fp is the pointer of file // gives read and write permission to the text file.
 char ch;
-ch = getc(fp)                     // Pics the character one by one.
+ch = getc(fp);                     // Pics the character one by one.
 while (ch!= EOF)
 {
 ch= getc(ch);
