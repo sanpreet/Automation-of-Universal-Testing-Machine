@@ -34,23 +34,24 @@ void loop() {
   delay(2000);
   if (sensorvalue[1]>sensorvalue[2]&& sensorvalue1[1]>sensorvalue1[2])
      exit(1); 
-  else
-  {
+  Serial.println("EOF");
   }
-  int my_handler(sig_t s)
-  {
-  Serial.println("Caught signal %d\n",s);
-  exit(1); 
-  }
-  int main(int argc,char** argv)
-  {
-  signal (SIGINT,my_handler);
-  while(1);
-  return 0;
-  }
- 
-}
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 
