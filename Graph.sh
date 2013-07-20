@@ -1,6 +1,11 @@
-#sudo chmod 777 /dev/ttyUSB0
-#sudo cat /dev/ttyUSB0> Sensor.txt
-awk 'NR%2!=0' Sensor.txt | cat > Finput.txt
+while read line; do
+if [ "$line" != "EOF" ]; then
+echo "$line" >> Sensor.txt
+else
+break
+fi
+done < /dev/ttyUSB0
+sed -e 's/[\t ]//g;/^$/d' Sensor.txt > Finput.txt
 awk 'NR%2==0' Finput.txt | cat > sensor1.txt
 awk 'NR%2!=0' Finput.txt | cat > sensor2.txt
 g++ main.cpp
@@ -35,6 +40,16 @@ set title 'Sensor Plot'
 
 	
 set term postscript eps enhanced "Helvetica" 24
+set output '$a.svg'
+replot
+_EOF_
+
+mv $a.svg Previous
+cd Previous
+gimp "$a.svg"
+cd ../
+rm output.txt -f
+rm Finputss.txt -f
 set output '$a.svg'
 replot
 _EOF_
