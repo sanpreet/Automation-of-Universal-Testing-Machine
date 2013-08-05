@@ -6,11 +6,11 @@
 using namespace std;
 
 int main(void) {
-    ifstream F1("sensor1.txt"),F4;
-    ofstream F2("sensor1_out.txt"),F3;
+    ifstream F1("sensor2.txt"),F4;
+    ofstream F2("sensor2_out.txt"),F3;
     string line;
     
-    int x[1000],y[1000],i=0,j=0,h;
+    int x[100000],y[100000],i=0,j=0,h;
     float b,T,cv,tv,cf1,cf2;
 	(getline(F1,line));
 	
@@ -22,9 +22,9 @@ int main(void) {
 	    (getline(F1,line));
 	    
             istringstream(line)>>b;
-            if(b<cf1)
+            if(b>cf1)
                 {   
-                    x[i]=b;
+                    y[i]=b;
                     i++;
                 }
             else if(i!=0)
@@ -40,14 +40,20 @@ int main(void) {
    for(i=0;i<n;i++)
         {
 	
-            F2<<setprecision(4)<<setw(10)<<x[i]<<endl;
+            F2<<setprecision(4)<<setw(10)<<y
+            
+            
+            
+            
+            
+            [i]<<endl;
         }
 
    F1.close();
    F2.close();
 
-   F1.open("sensor1_out.txt");
-   F2.open("X-axis.txt");
+   F1.open("sensor2_out.txt");
+   F2.open("Y-axis.txt");
     
    int k=0;
     do
@@ -64,8 +70,8 @@ int main(void) {
             }
         } while(k==0);
 
-    F4.open("sensor2.txt");
-    F3.open("Y-axis.txt");
+    F4.open("sensor1.txt");
+    F3.open("X-axis.txt");
  	(getline(F4,line));
     istringstream(line)>>h;
 	cf2=h;
@@ -74,9 +80,9 @@ int main(void) {
         
          
             istringstream(line) >> h;
-            if(h>cf2)
+            if(h<cf2)
             {
-				y[j]=h;
+				x[j]=h;
                 j++;
             }
             else if(j!=0)
@@ -100,16 +106,16 @@ int main(void) {
 
 	i=0;
 	int m=n,area,pi=3.14,radius;
-    cout<<"Enter radius:";
-    cin>>radius;
-    area=pi*radius*radius;
+   // cout<<"Enter radius:";
+   // cin>>radius;
+   // area=pi*radius*radius;
     while(getline(F1,line))
     {
         istringstream(line) >> b;
         float cv=T/310;
         float tv=cv*b;
-        float stress=tv/area;
-        F2<<stress<<endl;
+       // float stress=tv/area;
+        F2<<tv<<endl;
         i++;
         if(i==n)
             break;
@@ -120,9 +126,11 @@ int main(void) {
 	{
 		
 	    F3.width(6);
-	    F3<<right<<y[n]<<endl;
+	    F3<<right<<x[n]<<endl;
 	}
     F2.close();
+    
+    
     F3.close();
 return 0;
 }
