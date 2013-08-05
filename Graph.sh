@@ -1,11 +1,11 @@
-while read line; 
-do
-    if [ "$line" != "E" ]; then
-        echo "$line" >> Sensor.txt
-    else
-        break
-    fi
-done < /dev/ttyUSB0
+#while read line; 
+#do
+ #   if [ "$line" != "E" ]; then
+  #      echo "$line" >> Sensor.txt
+   # else
+    #    break
+    #fi
+#done < /dev/ttyUSB0
 
 sed -e 's/[\t ]//g;/^$/d' Sensor.txt > Finput.txt
 awk 'NR%2==0' Finput.txt | cat > sensor1.txt
@@ -29,17 +29,17 @@ read name
     fi
 
 /usr/bin/gnuplot  <<_EOF_
-set yrange [320:0]
+set yrange [-10:50]
+set xrange [320:0]
 set terminal svg
-plot 'output.txt'lc rgb 'red'
-set xlabel 'Stress'
-set ylabel 'Strain'
+set xlabel 'Deformation'
+set ylabel 'Force'
 set key off
 set timestamp "%d/%m/%y %H:%M" 80,-2 "Helvetica"
-plot 'output.txt' using 1:2 smooth bezier with lines linecolor rgb "red"
-set title 'Sensor Plot'
+set style data linespoints
 
-	
+plot 'output.txt' lt 2 lc rgb "red" lw 3
+set title 'Sensor Plot'
 set term postscript eps enhanced "Helvetica" 24
 set output '$name.svg'
 replot
