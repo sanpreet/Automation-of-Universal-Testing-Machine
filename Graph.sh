@@ -29,6 +29,7 @@ read name
     fi
 
 /usr/bin/gnuplot  <<_EOF_
+<<<<<<< HEAD
 set yrange [320:0]
 set terminal svg
 plot 'output.txt'lc rgb 'red'
@@ -38,8 +39,19 @@ set key off
 set timestamp "%d/%m/%y %H:%M" 80,-2 "Helvetica"
 plot 'output.txt' using 1:2 smooth bezier with lines linecolor rgb "red"
 set title 'Sensor Plot'
+=======
+set yrange [-10:50]
+set xrange [320:0]
+set terminal svg
+set xlabel 'Deformation'
+set ylabel 'Force'
+set key off
+set timestamp "%d/%m/%y %H:%M" 80,-2 "Helvetica"
+set style data linespoints
+>>>>>>> e6deb7216d264046fe64b84b26e1ebfd46e34e9e
 
-	
+plot 'output.txt' lt 2 lc rgb "red" lw 3
+set title 'Sensor Plot'
 set term postscript eps enhanced "Helvetica" 24
 set output '$name.svg'
 replot

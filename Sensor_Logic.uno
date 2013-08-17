@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 
+=======
+x
+>>>>>>> e6deb7216d264046fe64b84b26e1ebfd46e34e9e
 /*
   AnalogReadSerial
   Reads an analog input on pin 0, prints the result to the serial monitor.
@@ -47,5 +51,8 @@ void loop()
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e6deb7216d264046fe64b84b26e1ebfd46e34e9e
 
